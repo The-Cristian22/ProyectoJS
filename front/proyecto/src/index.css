@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;600;700&display=swap");
+
+:root {
+  --primary: #1dbeb4;
+  --secondary: #383b58;
+  --tertiary: #545776;
+  --quaternary: #DFE4EA;
+  --font-color: #fff;
+  --background-card: #fff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+@font-face {
+  font-family: "Roboto", sans-serif;
+  src: url("https://fonts.google.com/specimen/Roboto"), local("Roboto");
+  font-display: optional;
+}
+
+#root {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+}
+
+html {
+  font-size: 62.5%; /* Hace que 1 rem sea = a 10 px para calcular más fácil */
+  scroll-behavior: smooth; 
+}
+
+main {
+  height: calc(100% - 138px);
+  width: 100%;
+  background-color: var(--background-card);
+} 

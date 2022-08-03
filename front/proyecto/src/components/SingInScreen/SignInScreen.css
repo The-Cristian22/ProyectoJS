@@ -1,0 +1,61 @@
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+.sign-in-screen {
+    background-color: var(--quaternary);
+    height: calc(100vh - 138px);
+    padding-top: 15vh;
+}
+
+.sign-in-title {
+    color: var(--primary);
+    font-size: 3rem;
+    font-weight: 600;
+    text-align: center;
+    padding: 4rem 0 1.5rem;
+}
+
+.sign-in-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+    margin: 0 auto;
+}
+
+.user-info-sign-in {
+    color: var(--secondary);
+    font-weight: 500;
+    font-size: 1.4rem;
+    padding-bottom: 1rem;
+}
+
+/*---------  RESPONSIVE ---------*/
+/* widescreen version */
+@media screen and (min-width: 1367px) {
+    .sign-in-form {
+        width: 25%;
+    }
+}
+
+/* tablet version */
+@media screen and (min-width: 768px) and (max-width: 1100px) {
+    .sign-in-form {
+        width: 45%;
+    }
+}
+
+/* mobile version */
+@media screen and (min-width: 360px) and (max-width: 767px) {
+    .sign-in-screen {
+        padding-top: 3vh;
+    }
+    .sign-in-form {
+        width: 70%;
+        margin: 0 auto;
+    } 
+}

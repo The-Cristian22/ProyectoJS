@@ -1,0 +1,38 @@
+.sign-in-button {
+    background-color: var(--primary);
+    color: var(--font-color);
+    border: none;
+    cursor: pointer;
+    height: 4rem;
+    border-radius: 0.5rem;
+    width: 23rem;
+    font-size: 1.6rem;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-weight: 500;
+    margin: 1rem 0;
+    padding: 0.5rem 0;
+}
+
+/*---------  RESPONSIVE ---------*/
+/* widescreen version */
+@media screen and (min-width: 1367px) {
+    .sign-in-button {
+        width: 25rem;
+        font-size: 1.7rem;
+    }
+}
+
+/* tablet version */
+@media screen and (min-width: 768px) and (max-width: 1100px) {
+    .sign-in-button {
+        width: 100%;
+        margin-top: 40px;
+    }
+}
+
+/* mobile version */
+@media screen and (min-width: 360px) and (max-width: 767px) {
+    .sign-in-button {
+        width: 100%;
+    }
+}
