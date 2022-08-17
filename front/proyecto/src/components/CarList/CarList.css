@@ -1,0 +1,52 @@
+th {
+  border: 1px solid;
+  color: black;
+  font-size: 2.5rem;
+  padding: 0.5rem;
+  border-radius: 1.3rem;
+}
+
+td {
+  color: black;
+  font-size: 2rem;
+  border-bottom: 0.3rem var(--primary) solid;
+}
+
+table {
+  border-radius: 3rem;
+  border: 2rem solid white;
+  color: black;
+  background-color: white;
+  width: 100%;
+}
+
+.table-container {
+  padding-top: 3rem;
+  align-items: center;
+  text-align: center;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.x {
+  width: 3.5rem;
+  color: black;
+  border-color: black;
+  font-weight: 900;
+}
+
+.react-datepicker__close-icon {
+    position: relative;
+}
+
+.title-registro {
+  padding-top: 7rem;
+}
+
+.search-bar {
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-align: end;
+}
