@@ -1,12 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;600;700&display=swap");
 
 :root {
-  --primary: #1dbeb4;
-  --secondary: #383b58;
-  --tertiary: #545776;
+  --primary: #296594;
+  --secondary: #098434;
+  --tertiary: #04052e;
   --quaternary: #DFE4EA;
-  --font-color: #fff;
-  --background-card: #fff;
+  --font-color: #ffff;
+  --black: #000;
 }
 
 * {
@@ -30,11 +30,11 @@
 
 html {
   font-size: 62.5%; /* Hace que 1 rem sea = a 10 px para calcular más fácil */
-  scroll-behavior: smooth; 
+  scroll-behavior: smooth;
+  background: linear-gradient(to right, #04052e, #031f0d);
 }
 
 main {
   height: calc(100% - 138px);
   width: 100%;
-  background-color: var(--background-card);
 } 
