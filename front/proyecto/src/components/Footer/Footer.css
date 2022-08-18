@@ -1,0 +1,44 @@
+footer {
+    animation: fluido 10s ease-in-out infinite;
+    background: linear-gradient(-45deg, #296594, #098434);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--font-color);
+    width: 100%;
+    height: 58px;
+    position: fixed;
+    bottom: 0;
+    z-index: 100;
+}
+
+.copyright {
+    margin-left: 4rem;
+    font-weight: bold;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.social-follow {
+    font-size: 2rem;
+    margin-right: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.social-icon {
+    color: var(--font-color);
+    font-size: 27px;
+    margin: 0 1rem;
+}
+
+
+@keyframes fluido {
+    0% { background-position: 0 50% }
+    50% { background-position: 100% 50% }
+    100% { background-position: 0 50% }
+
+}

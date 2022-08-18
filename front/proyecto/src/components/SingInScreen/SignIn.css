@@ -1,0 +1,98 @@
+.container-signin {
+    background: linear-gradient(to right, #04052e, #031f0d);
+    height: 100%;
+    width: 100%;
+    color: var(--font-color);
+
+    align-items: center;
+    text-align: center;
+}
+
+.welcome {
+    font-size: 1.6rem;
+    padding-top: 3%;
+}
+
+.error-form {
+    color: var(--secondary);
+    font-size: 1.5rem;
+    padding-left: 4rem;
+}
+
+.icon-power {
+    color: rgb(161, 247, 104);
+}
+.name {
+    font-size: 10rem;
+    color: var(--tertiary);
+    padding-top: 0.5rem;
+    padding-bottom: 8rem;    
+    animation: fluido 10s ease-in-out infinite;
+    background: linear-gradient(-45deg, #296594, #098434);
+    background-size: 300%;
+    -webkit-background-clip: text;
+            background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.title-signin {
+    font-size: 5rem;
+    padding-bottom: 2rem;
+}
+
+.text {
+    font-size: 1.5rem;
+    padding-right: .5rem;
+    padding-left: 1.5rem;
+}
+
+.container-inputs-signin{
+    padding-bottom: 0.6rem;
+}
+
+.input-signin {
+    width: 20rem;
+    height: 3rem;
+    border-radius:2rem;
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+.icon-inside-input{
+    font-size: 3rem;
+    padding-left: 1rem;
+    transition-duration: 0.4s;
+}
+
+.icon-inside-input:hover{
+    color: var(--secondary);
+}
+
+.container-button{
+    padding-top: 3rem;
+}
+
+.button-signin {
+    color: var(--font-color);
+    width: 25rem;
+    height: 3.5rem;
+    font-size: 2rem;
+    border-radius: 1.5rem;
+    border: 2.3px solid var(--font-color);
+    background-color: transparent;
+    transition-duration: 0.4s;
+}
+
+.button-signin:hover {
+    background-color: transparent;
+    color: var(--secondary);
+    border: 2.3px solid var(--secondary);
+}
+
+
+@keyframes fluido {
+    0% { background-position: 0 50% }
+    50% { background-position: 100% 50% }
+    100% { background-position: 0 50% }
+
+}
