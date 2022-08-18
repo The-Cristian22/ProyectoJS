@@ -8,26 +8,17 @@ function Header(props) {
     const { page } = props
 
     useEffect(()=>{
-//        window.location.reload()
-
+        handleStyle()
     }, [page])
 
-
     const history = useNavigate()
-    function checkUser(){
-        const isUser = localStorage.getItem("rol")
-        if(!isUser||isUser === "user"){
-            history("/formcar")
-        }
-    }
 
-    function pageSignIn(){
-        if (page === "/") {
-            return true 
-        }   else {
-            return false
+    function handleStyle(){
+        if(page === "/"){ 
+            return { right: "0" }
+        } else {
+            return { right: "-100000%" }
         }
-
     }
 
     function checkAdmin() {
@@ -53,7 +44,7 @@ function Header(props) {
         return
     } else {
     return (
-        <header className={pageSignIn()? "header-home" : ""}>
+        <header styles={handleStyle()}>
             <Link className="navbar-logo" to="/">
             <div className="logo">
                 <p>PARK<span className="icon-power"><FaPowerOff /></span>NTROL</p>

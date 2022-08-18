@@ -7,20 +7,22 @@ import axios from "axios"
 
 import "./NewUser.css"
 
-function NewUser() {
-    
-    window.onload = () => {
-        checkUser();
-        checkAdmin();
-        checkSuperAdmin();
+function NewUser(props) {
+
+    const { setOnPage } = props;
+    window.onload = onLoad()
+
+    function onLoad(){
+        setOnPage("/newuser")
+        checkPermisions()
     }
 
     const history = useNavigate()
     const [passwordShown, setPasswordShown] = useState(false);
+    const [confirmPasswordShown, setConfirmPasswordShown] = useState(false);
     const togglePasswordVisiblity = () => {
         setPasswordShown(passwordShown ? false : true);
     };
-    const [confirmPasswordShown, setConfirmPasswordShown] = useState(false);
     const toggleConfirmPasswordVisiblity = () => {
         setConfirmPasswordShown(confirmPasswordShown ? false : true);
     };
@@ -31,20 +33,13 @@ function NewUser() {
         }
     });
     
-
-    function checkUser(){
+    function checkPermisions(){
+        const isLogged = localStorage.getItem('logged')
         const isUser = localStorage.getItem("rol")
-        if(!isUser||isUser === "user"){
+        if (!isLogged){
+            history("/")
+        } if(isUser === "user"){
             history("/formcar")
-        }
-    }
-
-    function checkAdmin() {
-        const isAdmin = localStorage.getItem("rol")
-        if (isAdmin === "admin") {
-            return true
-        } else {
-            return false
         }
     }
 
@@ -59,7 +54,6 @@ function NewUser() {
 
     const onSubmit = (data) => {
         console.log(data)
-        
         JSON.stringify(data)
         console.log(data)
         

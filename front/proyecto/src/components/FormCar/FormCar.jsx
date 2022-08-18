@@ -1,65 +1,67 @@
-import { NEW_VEHICLE  } from "../../utils/apis";
+import { NEW_VEHICLE } from "../../utils/apis";
 import { useForm } from "react-hook-form";
-import { useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import axios from "axios";
 import "./FormCar.css"
 
 
-function FormCar() {
+function FormCar(props) {
 
-        window.onload = () => {
-        checkAdmin();
+    const { setOnPage } = props;
+    window.onload = onLoad()
+
+    function onLoad(){
+        setOnPage("/newuser")
+        checkPermisions()
     }
 
     const date = new Date(0).toString()
     const history = useNavigate()
 
     const { register, formState: { errors }, watch, handleSubmit } = useForm({
-        defaultValues:{
+        defaultValues: {
             date: date
         }
     });
 
-        function checkAdmin() {
-        const isAdmin = localStorage.getItem("rol")
-        if (isAdmin !== "admin") {
-            return false
-        } else {
-            return true
+    function checkPermisions() {
+        const isLogged = localStorage.getItem('logged')
+        if (!isLogged) {
+            history("/")
         }
     }
 
 
-    const onSubmit = (data)=> {
+    const onSubmit = (data) => {
         const date = new Date().toString()
-        data.date =  arrDate(date)
+        data.date = arrDate(date)
         JSON.stringify(data)
-        console.log(data) 
-        
+        console.log(data)
+
         axios.post(NEW_VEHICLE, data)
-        .then(function (res){
-            if(res.status === 200){
-                alert("producto creado con exito")
-                window.location.reload()
-            } else {
-                alert("No se pudo crear el producto")
-            }
-        })
-        .catch(function (err){
-            console.log(err);
-        })
-    
+            .then(function (res) {
+                if (res.status === 200) {
+                    alert("producto creado con exito")
+                    window.location.reload()
+                } else {
+                    alert("No se pudo crear el producto")
+                }
+            })
+            .catch(function (err) {
+                console.log(err);
+            })
+
     }
 
     function arrDate(date) {
         date = date.replace(" GMT-0500 (hora estándar de Colombia)", "")
         return date
     }
-    
-    
+
+
     const incluirCorreo = watch('incluirCorreo')
     return (
-        <section  class="container-signin">
+        <section class="container-signin">
             <h2 class="title-signin title-newuser">Nuevo Registro</h2>
             <form class="form-signin" onSubmit={handleSubmit(onSubmit)}>
                 <div class="container-inputs-signin">
@@ -134,7 +136,7 @@ function FormCar() {
                     </div>
                 )}
                 <div>
-                    <input class="button-signin"  type="submit" value="Submit" />
+                    <input class="button-signin" type="submit" value="Submit" />
                 </div>
             </form>
         </section>

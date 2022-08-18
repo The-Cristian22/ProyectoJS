@@ -40,12 +40,12 @@ class UsersService {
     }
 
     async deleteUser(id){
-        const deleteUser = await models.Users.findByPk(id)
-        if(!deleteUser)
+        const deletedUser = await models.Users.findByPk(id)
+        if(!deletedUser)
         {
             throw boom.conflict('Not resouerce deleted')
         }
-        await deleteUser.destroy()
+        await deletedUser.destroy()
         return { id }
 
 }

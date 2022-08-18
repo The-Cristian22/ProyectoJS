@@ -10,11 +10,9 @@ import "./CarList.css"
 
 function CarList(props) {
 
-    window.onload = () => {
-        setOnPage("/carlist")
-    }
-
     const { setOnPage } = props;
+    window.onload = setOnPage("/carlist")
+
     const [vehicles, setVehicles] = useState([])
     const [startDate, setStartDate] = useState(null);
 
@@ -39,15 +37,15 @@ function CarList(props) {
     }, []);
 
     function deleteCar(vehicle) {
-        if (window.confirm("Esta accion es permanente, esta seguro de querer borrar este registro¿?")) {
+        if (window.confirm("Esta accion es permanente, esta seguro de querer borrar este registro?")) {
 
             axios.delete(DELETE_VEHICLE + "/" + vehicle.plate)
                 .then(function (res) {
                     if (res.status === 200) {
-                        alert("Vehiculo borrado con exito")
+                        alert("Registro borrado con exito")
                         window.location.reload(true)
                     } else {
-                        alert("no se ha podido borrar el vehiculo")
+                        alert("no se ha podido borrar el registro")
                     }
                 })
                 .catch(function (err) {
@@ -56,6 +54,7 @@ function CarList(props) {
                 })
         }
     }
+    
     function filterVehicles(plate, owner, phone, date) {
         axios.get(`${FILTER_VEHICLES}?plate=${plate}&owner=${owner}&phone=${phone}&date=${date}`)
             .then((result) => {

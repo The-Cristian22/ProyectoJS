@@ -13,6 +13,7 @@ function SignIn(props) {
     
     const history = useNavigate()
     const [passwordShown, setPasswordShown] = useState(false);
+    const [logged, setLogged] = useState(false);
     const togglePasswordVisiblity = () => {
         setPasswordShown(passwordShown ? false : true);
     };
@@ -26,6 +27,7 @@ function SignIn(props) {
             console.log(res.data)
             if (res.status === 200){
                 localStorage.setItem('token', res.data.data.token);
+                localStorage.setItem('logged', true)
                 checkRol(res.data.data.user.rol)
             }
         })
