@@ -1,7 +1,7 @@
 import { ALL_VEHICLES, DELETE_VEHICLE, FILTER_VEHICLES } from "../../utils/apis"
 import React, { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import DatePicker from "react-datepicker"
 import axios from "axios"
 import "react-datepicker/dist/react-datepicker.css";
@@ -101,14 +101,6 @@ function CarList(props) {
             <div class="search-bar">
                 <section onSubmit={handleSubmit(onSubmit)}>
                     <form>
-                        <DatePicker
-                            {...register("date")}
-                            selected={startDate}
-                            onChange={(date) => setStartDate(date)}
-                            isClearable
-                            placeholderText="Filtrar por fecha"
-                            dateFormat="MMM dd"
-                        />
 
                         <label class="text">
                             placa
@@ -123,7 +115,17 @@ function CarList(props) {
                         </label>
                         <input class="input-signin" type="number" name="phone" {...register('phone')} />
 
-                        <button type="submit">filtrar</button>
+                        <DatePicker
+                            {...register("date")}
+                            selected={startDate}
+                            onChange={(date) => setStartDate(date)}
+                            isClearable
+                            placeholderText="fecha"
+                            dateFormat="MMM dd"
+                        />
+                        <div>
+                        <button class="button-signin" type="submit">filtrar</button>
+                        </div>
                     </form>
                 </section>
             </div>
@@ -142,7 +144,7 @@ function CarList(props) {
                     <tbody>
                         {vehicles.map((vehicle) => (
                             <tr>
-                                <td>{vehicle.plate}</td>
+                                <td><Link className="plate" to={`/registerdetail/${vehicle.plate}`}>{vehicle.plate}</Link></td>
                                 <td>{vehicle.owner}</td>
                                 <td>{vehicle.phone}</td>
                                 <td>{arrDate(vehicle.date)}</td>

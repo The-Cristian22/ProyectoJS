@@ -7,6 +7,7 @@ import CarList from "../CarList/CarList"
 import UserList from "../UserList/UserList";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
+import RegisterDetail from "../RegisterDetail/RegisterDetail";
 
 
 function Layout() {
@@ -28,7 +29,7 @@ function Layout() {
                     <Route exact path="/newuser" element={<NewUser setOnPage={setPage}/>} />
                     <Route exact path="/carlist" element={<CarList setOnPage={setPage}/>} />
                     <Route exact path="/userlist" element={<UserList setOnPage={setPage}/>} />
-                    <Route exact path="/registerdetail" element={<UserList setOnPage={setPage}/>} />
+                    <Route exact path="/registerdetail/:plate" element={<RegisterDetail setOnPage={setPage}/>} />
                 </Routes>
             </main>
             <Footer/>

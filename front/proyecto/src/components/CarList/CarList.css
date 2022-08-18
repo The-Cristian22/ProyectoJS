@@ -28,6 +28,12 @@ table {
   padding-right: 5%;
 }
 
+.plate {
+  text-decoration: none;
+  color: black;
+  font-size: 2rem;
+}
+
 .x {
   width: 3.5rem;
   color: black;
@@ -45,8 +51,40 @@ table {
 
 .search-bar {
   padding-top: 2rem;
-  display: flex;
-  flex-direction: row;
   justify-content: space-between;
-  text-align: end;
+}
+.react-datepicker__input-container {
+  padding-top: 1.4rem;
+  padding-bottom: 1.4rem;
+}
+.react-datepicker-popper{
+  position: relative;
+  transform: translate(0px, 0px);
+}
+
+.react-datepicker-popper[data-placement^=bottom] {
+  padding-top: 0px; 
+}
+
+.react-datepicker-wrapper {
+  width: 30rem;
+}
+
+.react-datepicker__month {
+  width: 29rem;
+}
+
+.react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
+  width: 3.7rem;
+  height: 2.4rem;
+  font-size: 1.4rem;
+}
+
+.react-datepicker {
+  height: 20;
+}
+
+.react-datepicker__current-month, .react-datepicker-time__header, .react-datepicker-year-header {
+  font-size: 1.4rem;
+  padding-bottom: 1.5rem;
 }

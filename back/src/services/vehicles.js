@@ -22,6 +22,18 @@ class VehicleService {
         return vehicles
     }
 
+    async getVehicleByPlate(plate){
+        try {
+            return await models.Vehicles.findOne({
+                where: {
+                    plate: plate
+                }
+            })
+        } catch (error) {
+            throw boom.internal(error.message)
+        }
+    }
+
     async getFilterVehicles(plate, owner, phone, date)
     {
         if(!phone){

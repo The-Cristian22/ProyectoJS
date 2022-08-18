@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useNavigate, Link } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { FaPowerOff } from "react-icons/fa";
 import "./Header.css"
 
@@ -10,8 +10,6 @@ function Header(props) {
     useEffect(()=>{
         handleStyle()
     }, [page])
-
-    const history = useNavigate()
 
     function handleStyle(){
         if(page === "/"){ 
@@ -51,12 +49,12 @@ function Header(props) {
             </div>
             </Link>
             <div>
-                <Link className="navbar" to="/formcar">agregar vehiculo</Link>
-                {checkAdmin()? <Link className="navbar" to="/newuser">agregar usuario</Link>:"" }
-                {checkSuperAdmin()? <Link className="navbar" to="/newuser">agregar usuario</Link>:"" }
-                <Link className="navbar" to="/carlist">lista vehiculos</Link>
-                {checkAdmin()? <Link className="navbar" to="/userlist">lista usuarios</Link> : ""}
-                {checkSuperAdmin()? <Link className="navbar" to="/userlist">lista usuarios</Link> : ""}
+                <Link className="navbar" to="/formcar">nuevo registro</Link>
+                {checkAdmin()? <Link className="navbar" to="/newuser">nuevo usuario</Link>:"" }
+                {checkSuperAdmin()? <Link className="navbar" to="/newuser">nuevo usuario</Link>:"" }
+                <Link className="navbar" to="/carlist">ver registros</Link>
+                {checkAdmin()? <Link className="navbar" to="/userlist">ver usuarios</Link> : ""}
+                {checkSuperAdmin()? <Link className="navbar" to="/userlist">ver usuarios</Link> : ""}
                 
             </div>
         </header>

@@ -16,6 +16,14 @@
   font-family: "Roboto", sans-serif;
 }
 
+input {
+  width: 20rem;
+  height: 3rem;
+  border-radius:2rem;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
 @font-face {
   font-family: "Roboto", sans-serif;
   src: url("https://fonts.google.com/specimen/Roboto"), local("Roboto");

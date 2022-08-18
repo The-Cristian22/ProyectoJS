@@ -26,6 +26,15 @@ router.get('/all/filter', async (req, res)=>{
         errorResponse(req, res, e)
     }
 })
+router.get('/detail/:plate', async (req, res)=>{
+    const plate = req.params.plate
+    try {
+        const vehicle = await vehicleService.getVehicleByPlate(plate)
+        successResponse(req, res, vehicle)
+    } catch (error) {
+        errorResponse(req, res, error)
+    }
+})
 
 router.post('/save', async(req, res) =>{
     const newVehicle = req.body
