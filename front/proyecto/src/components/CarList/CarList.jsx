@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import DatePicker from "react-datepicker"
 import axios from "axios"
+import swal from "sweetalert"
 import "react-datepicker/dist/react-datepicker.css";
 import "./CarList.css"
 
@@ -37,22 +38,44 @@ function CarList(props) {
     }, []);
 
     function deleteCar(vehicle) {
-        if (window.confirm("Esta accion es permanente, esta seguro de querer borrar este registro?")) {
-
-            axios.delete(DELETE_VEHICLE + "/" + vehicle.plate)
-                .then(function (res) {
-                    if (res.status === 200) {
-                        alert("Registro borrado con exito")
-                        window.location.reload(true)
-                    } else {
-                        alert("no se ha podido borrar el registro")
-                    }
-                })
-                .catch(function (err) {
-                    console.log(err);
-                    alert("no se ha podido borrar el vehiculo")
-                })
-        }
+        swal({
+            title: "esta accion es permanente",
+            text: "¿esta seguro de querer borrar este registro?",
+            icon: "warning",
+            buttons: true, 
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                axios.delete(DELETE_VEHICLE + "/" + vehicle.plate)
+                    .then(function (res) {
+                        if (res.status === 200) {
+                            swal({
+                                title: "Registro borrado con exito",
+                                icon: "success",
+                                button: "perfecto!!"
+                            }).then(()=>{
+                                window.location.reload(true)
+                            })
+                        } else {
+                            swal({
+                                title: "No se pudo borrar el registro",
+                                text: "Tenemos un pequeño error de nuestro lado, intenta mas tarde",
+                                icon: "error",
+                                button: "Vale..."
+                            })
+                        }
+                    })
+                    .catch(function (err) {
+                        swal({
+                            title: "No se pudo borrar el registro",
+                            text: "Tenemos un pequeño error de nuestro lado, intenta mas tarde",
+                            icon: "error",
+                            button: "Vale..."
+                        })
+                    })
+            }
+        })
     }
     
     function filterVehicles(plate, owner, phone, date) {
@@ -91,7 +114,6 @@ function CarList(props) {
         data.date = formateDate(startDate)
         if(data.date === "Wed Dec 31 1969" || data.date === "Invalid Date undefined undefined"){ data.date=""}
         filterVehicles(data.plate, data.owner, data.phone, data.date)
-        console.log(data)
     }
 
     return (

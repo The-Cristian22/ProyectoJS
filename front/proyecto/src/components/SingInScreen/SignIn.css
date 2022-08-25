@@ -1,3 +1,14 @@
+.swal-overlay--show-modal .swal-modal {
+    border-radius: 5rem;
+}
+.swal-title {
+    color: var(--black);
+}
+
+.swal-button {
+    color: #4a4a4a;
+}
+
 .container-signin {
     background: linear-gradient(to right, #04052e, #031f0d);
     height: 100%;

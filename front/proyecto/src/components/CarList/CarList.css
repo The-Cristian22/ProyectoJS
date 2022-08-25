@@ -22,10 +22,11 @@ table {
 
 .table-container {
   padding-top: 3rem;
-  align-items: center;
-  text-align: center;
+  padding-bottom: 8rem;
   padding-left: 5%;
   padding-right: 5%;
+  align-items: center;
+  text-align: center;
 }
 
 .plate {

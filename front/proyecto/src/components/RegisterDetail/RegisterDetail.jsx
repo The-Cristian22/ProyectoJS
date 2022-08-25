@@ -7,13 +7,18 @@ import "./RegisterDetail.css"
 
 function RegisterDetail(props) {
     const { plate } = useParams()
-    const [vehicle, setVehicle] = useState([])
-    const [tdata, settdata] = useState([])
+    const [ vehicle, setVehicle ] = useState([])
+    const [ tdata, settdata ] = useState({
+        dateParseHour: 0,
+        dateParseMin: 0,
+        precioPor: 0
+    })
     const { setOnPage } = props;
     window.onload = onLoad()
 
+
     function onLoad() {
-        setOnPage("/newuser")
+        setOnPage("/registerdetail")
         checkPermisions()
     }
 
@@ -29,8 +34,9 @@ function RegisterDetail(props) {
     const { register, watch, handleSubmit } = useForm({
         defaultValues: {
             date: date,
-            dateParseMin: "",
-            dateParseHour: ""
+            dateParseMin: 0,
+            dateParseHour: 0,
+            precioPor: 0
         }
     });
 
@@ -46,21 +52,17 @@ function RegisterDetail(props) {
 
     const onSubmit = (data) => {
         const dateParse = (Date.parse(new Date()) - Date.parse(new Date(vehicle.date)))
-        data.dateParse = dateParse/1000
-        data.dateParseMin = data.dateParse/60
-        data.dateParseHour = data.dateParseMin/60
+        data.dateParse = dateParse / 1000
+        data.dateParseMin = data.dateParse / 60
+        data.dateParseHour = data.dateParseMin / 60
         data.precioPor = parseInt(data.precioPor)
-        console.log(data.dateParseHour*data.precioPor)
-        console.log(data)
         settdata(data)
     }
 
-    function isHour(){
-        if(cobro === "hora"){
-            console.log(tdata)
+    function isHour() {
+        if (cobro === "hora") {
             return true
         } else {
-            console.log(tdata)
             return false
         }
     }
@@ -90,7 +92,6 @@ function RegisterDetail(props) {
                         <input class="button-signin button-detail" type="submit" value="Generar" />
                     </div>
                 </form>
-
                 <h4 className="detail-payment">Precio total: {isHour()? <span>{(tdata.dateParseHour*tdata.precioPor).toFixed()}</span>: <span>{(tdata.dateParseMin*tdata.precioPor).toFixed()}</span>}</h4>
                 <h4 className="detail-payment">Total de {cobro}s: {isHour()? <span>{(tdata.dateParseHour).toFixed(2)}</span>:<span>{(tdata.dateParseMin).toFixed(2)}</span>}</h4>
             </div>

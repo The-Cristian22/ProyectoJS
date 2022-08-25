@@ -4,6 +4,7 @@ import { FaEyeSlash, FaEye, FaPowerOff } from "react-icons/fa";
 import { useNavigate } from "react-router-dom"
 import { useForm } from "react-hook-form";
 import axios from "axios"
+import swal from "sweetalert"
 import "./SignIn.css"
 
 function SignIn(props) {
@@ -13,18 +14,15 @@ function SignIn(props) {
     
     const history = useNavigate()
     const [passwordShown, setPasswordShown] = useState(false);
-    const [logged, setLogged] = useState(false);
     const togglePasswordVisiblity = () => {
         setPasswordShown(passwordShown ? false : true);
     };
     const { register, formState: { errors }, handleSubmit } = useForm({});
     const onSubmit = (data) => {
         JSON.stringify(data)
-        console.log(data)
 
         axios.post(LOGIN, data)
         .then(function (res){
-            console.log(res.data)
             if (res.status === 200){
                 localStorage.setItem('token', res.data.data.token);
                 localStorage.setItem('logged', true)
@@ -33,7 +31,12 @@ function SignIn(props) {
         })
         .catch(function (err){
             console.log(err)
-            alert("Invalid username or password")
+            swal({
+                title: "Tenemos un problemita...",
+                text: "El Email o la contraseña son incorrectos",
+                icon: "warning",
+                button: "lo revisare..."
+            })
         })
     }
 

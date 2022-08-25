@@ -49,13 +49,12 @@ function Header(props) {
             </div>
             </Link>
             <div>
-                <Link className="navbar" to="/formcar">nuevo registro</Link>
-                {checkAdmin()? <Link className="navbar" to="/newuser">nuevo usuario</Link>:"" }
-                {checkSuperAdmin()? <Link className="navbar" to="/newuser">nuevo usuario</Link>:"" }
-                <Link className="navbar" to="/carlist">ver registros</Link>
-                {checkAdmin()? <Link className="navbar" to="/userlist">ver usuarios</Link> : ""}
-                {checkSuperAdmin()? <Link className="navbar" to="/userlist">ver usuarios</Link> : ""}
-                
+                {(page==="/formcar")?"":<Link className="navbar" to="/formcar">nuevo registro</Link>}
+                {(page==="/newuser")?"":checkAdmin()? <Link className="navbar" to="/newuser">nuevo usuario</Link>:"" }
+                {(page==="/newuser")?"":checkSuperAdmin()? <Link className="navbar" to="/newuser">nuevo usuario</Link>:"" }
+                {(page==="/carlist")?"":<Link className="navbar" to="/carlist">ver registros</Link>}
+                {(page==="/userlist")?"":checkAdmin()? <Link className="navbar" to="/userlist">ver usuarios</Link> : ""}
+                {(page==="/userlist")?"":checkSuperAdmin()? <Link className="navbar" to="/userlist">ver usuarios</Link> : ""}
             </div>
         </header>
     )

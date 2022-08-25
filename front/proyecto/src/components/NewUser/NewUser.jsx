@@ -4,6 +4,7 @@ import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { useNavigate} from "react-router-dom"
 import axios from "axios"
+import swal from "sweetalert"
 
 import "./NewUser.css"
 
@@ -53,19 +54,34 @@ function NewUser(props) {
     }
 
     const onSubmit = (data) => {
-        console.log(data)
         JSON.stringify(data)
-        console.log(data)
         
         axios.post(NEW_USER, data)
         .then(function (res){
             if(res.status === 200){
-                alert("Usuario creado con exito")
-            } 
+                swal({
+                    title: "Usuario creado con exito",
+                    icon: "success",
+                    button: "perfecto!!"
+                }).then(()=>{
+                    window.location.reload(true)
+                })
+            } else {
+                swal({
+                    title: "No se pudo crear el Usuairo",
+                    text: "Tenemos un pequeño error de nuestro lado, intenta de nuevo mas tarde",
+                    icon: "error",
+                    button: "Vale..."
+                })
+            }
         })        
         .catch(function (err){
-            console.log(err)
-            alert("No se pudo crear el usuario")
+            swal({
+                title: "No se pudo crear el Usuario",
+                text: "Tenemos un pequeño error de nuestro lado, intenta de nuevo mas tarde",
+                icon: "error",
+                button: "Vale..."
+            })
         })
     }
 
@@ -128,12 +144,12 @@ function NewUser(props) {
 
                 <div className="container-errors">
                     {errors.email?.type === 'required' && <p class="error-form">El campo Email es requerido</p>}
-                    {errors.email?.type === 'maxLength' && <p class="error-form">El campo no puede tener mas de 100 caracteres</p>}
+                    {errors.email?.type === 'maxLength' && <p class="error-form">El campo Email no puede tener mas de 100 caracteres</p>}
                     {errors.email?.type === 'pattern' && <p class="error-form">El formato del email es incorrecto</p>}
                     {errors.confirmPassword?.type === 'validate' && <p class="error-form">las contraseñas deben coincidir</p>}
                     {errors.confirmPassword?.type === 'required' && <p class="error-form">Debes confirmar la contraseña</p>}
-                    {errors.confirmPassword?.type === 'maxLength' && <p class="error-form">El campo no puede tener mas de 20 caracteres</p>}
-                    {errors.confirmPassword?.type === 'minLength' && <p class="error-form">El campo no puede tener menos de 6 caracteres</p>}
+                    {errors.confirmPassword?.type === 'maxLength' && <p class="error-form">El campo confirmar contraseña no puede tener mas de 20 caracteres</p>}
+                    {errors.confirmPassword?.type === 'minLength' && <p class="error-form">El campo confirmar contraseña no puede tener menos de 6 caracteres</p>}
                 </div>
 
 

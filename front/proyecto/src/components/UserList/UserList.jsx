@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import axios from "axios"
+import swal from "sweetalert"
 import { ALL_USERS, DELETE_USER } from "../../utils/apis";
 import { useNavigate } from "react-router-dom";
 import "./UserList.css"
@@ -11,7 +12,7 @@ function UserList(props){
     window.onload = onLoad()
 
     function onLoad(){
-        setOnPage("/newuser")
+        setOnPage("/userlist")
         checkPermisions()
     }
 
@@ -20,13 +21,6 @@ function UserList(props){
             return true
         }   else {return false}
     }
-
-    function isSuperAdmin(){
-        if(localStorage.getItem("rol") === "superAdmin"){
-            return true
-        }   else {return false}
-    }
-
 
     function checkPermisions(){
         const rol = localStorage.getItem("rol")
@@ -47,27 +41,49 @@ function UserList(props){
     })
 
     function deleteUser(user) {
-        if (window.confirm("Esta accion es permanente, esta seguro de querer borrar este usuario?")) {
-            axios.delete(DELETE_USER +"/" + user.id)
-                .then(function (res) {
-                    if (res.status === 200) {
-                        alert("Usuario borrado con exito")
-                        window.location.reload(true)
-                    } else {
-                        alert("no se ha podido borrar el registro")
-                    }
-                })
-                .catch(function (err){
-                    console.log(err);
-                    alert("no se ha podido borrar el usuario")
-                })
-        }
+        swal({
+            title: "esta accion es permanente",
+            text: "¿esta seguro de querer borrar este usuario?",
+            icon: "warning",
+            buttons: true, 
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                axios.delete(DELETE_USER +"/" + user.id)
+                    .then(function (res) {
+                        if (res.status === 200) {
+                            swal({
+                                title: "Usuario borrado con exito",
+                                icon: "success",
+                                button: "perfecto!!"
+                            }).then(()=>{
+                                window.location.reload(true)
+                            })
+                        } else {
+                            swal({
+                                title: "No se pudo borrar el registro",
+                                text: "Tenemos un pequeño error de nuestro lado, intenta mas tarde",
+                                icon: "error",
+                                button: "Vale..."
+                            })
+                        }
+                    })
+                    .catch(function (err){
+                        swal({
+                            title: "No se pudo borrar el registro",
+                            text: "Tenemos un pequeño error de nuestro lado, intenta mas tarde",
+                            icon: "error",
+                            button: "Vale..."
+                        })
+                    })
+            }
+        })
     }
 
     return (
         <section class="container-sigin">
-            <h2 class="tittle-sigin title-registro">Usuarios</h2>
-        
+            <h2 class="title-signin title-list">Usuarios</h2>
             <div class="table-container">
                 <table>
                     <thead>

@@ -2,6 +2,7 @@ import { NEW_VEHICLE } from "../../utils/apis";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom"
 import axios from "axios";
+import swal from "sweetalert"
 import "./FormCar.css"
 
 
@@ -11,7 +12,7 @@ function FormCar(props) {
     window.onload = onLoad()
 
     function onLoad(){
-        setOnPage("/newuser")
+        setOnPage("/formcar")
         checkPermisions()
     }
 
@@ -36,19 +37,33 @@ function FormCar(props) {
         const date = new Date().toString()
         data.date = arrDate(date)
         JSON.stringify(data)
-        console.log(data)
 
         axios.post(NEW_VEHICLE, data)
             .then(function (res) {
                 if (res.status === 200) {
-                    alert("producto creado con exito")
-                    window.location.reload()
+                    swal({
+                        title: "Registro creado con exito",
+                        icon: "success",
+                        button: "perfecto!!"
+                    }).then(()=>{
+                        window.location.reload(true)
+                    })
                 } else {
-                    alert("No se pudo crear el producto")
+                    swal({
+                        title: "No se pudo crear el registro",
+                        text: "Tenemos un pequeño error de nuestro lado, intenta de nuevo mas tarde",
+                        icon: "error",
+                        button: "Vale..."
+                    })
                 }
             })
             .catch(function (err) {
-                console.log(err);
+                swal({
+                    title: "No se pudo crear el registro",
+                    text: "Tenemos un pequeño error de nuestro lado, intenta de nuevo mas tarde",
+                    icon: "error",
+                    button: "Vale..."
+                })
             })
 
     }
@@ -74,7 +89,7 @@ function FormCar(props) {
                         maxLength: 10
                     })} />
                     {errors.plate?.type === 'required' && <p class="error-form">El campo placa es requerido</p>}
-                    {errors.plate?.type === 'minLength' && <p class="error-form">El campo no puede tener menos de 4 caracteres</p>}
+                    {errors.plate?.type === 'minLength' && <p class="error-form">El campo placa no puede tener menos de 4 caracteres</p>}
                     {errors.plate?.type === 'maxLength' && <p class="error-form">El campo placa no puede tener mas de 10 caracteres</p>}
                 </div>
                 <div class="container-inputs-signin">
@@ -87,8 +102,8 @@ function FormCar(props) {
                         maxLength: 50,
                     })} />
                     {errors.owner?.type === 'required' && <p class="error-form">El campo propietario es requerido</p>}
-                    {errors.owner?.type === 'minLength' && <p class="error-form">El campo no puede tener menos de 4 caracteres</p>}
-                    {errors.owner?.type === 'maxLength' && <p class="error-form">El campo placa no puede tener mas de 50 caracteres</p>}
+                    {errors.owner?.type === 'minLength' && <p class="error-form">El campo propietario no puede tener menos de 4 caracteres</p>}
+                    {errors.owner?.type === 'maxLength' && <p class="error-form">El campo propietario no puede tener mas de 50 caracteres</p>}
                 </div>
                 <div class="container-inputs-signin">
                     <label class="text">
@@ -100,8 +115,8 @@ function FormCar(props) {
                         maxLength: 20,
                     })} />
                     {errors.identification?.type === 'required' && <p class="error-form">El campo cedula es requerido</p>}
-                    {errors.identification?.type === 'minLength' && <p class="error-form">El campo no puede tener menos de 5 caracteres</p>}
-                    {errors.identification?.type === 'maxLength' && <p class="error-form">El campo placa no puede tener mas de 20 caracteres</p>}
+                    {errors.identification?.type === 'minLength' && <p class="error-form">El campo cedula no puede tener menos de 5 caracteres</p>}
+                    {errors.identification?.type === 'maxLength' && <p class="error-form">El campo cedula no puede tener mas de 20 caracteres</p>}
                 </div>
                 <div class="container-inputs-signin">
                     <label class="text">
@@ -114,7 +129,7 @@ function FormCar(props) {
                         type: Number
                     })} />
                     {errors.phone?.type === 'required' && <p class="error-form">El campo celular es requerido</p>}
-                    {errors.phone?.type === 'minLength' && <p class="error-form">El campo no puede tener menos de 7 caracteres</p>}
+                    {errors.phone?.type === 'minLength' && <p class="error-form">El campo celular no puede tener menos de 7 caracteres</p>}
                     {errors.phone?.type === 'maxLength' && <p class="error-form">El campo celular no puede tener mas de 15 caracteres</p>}
                     {errors.phone?.type === 'type' && <p class="error-form">El campo celular tiene que ser un numero</p>}
                 </div>
@@ -131,8 +146,8 @@ function FormCar(props) {
                             maxLenght: 100,
                             pattern: /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
                         })} />
-                        {errors.mail?.type === 'maxLength' && <p class="error-form">El campo placa no puede tener mas de 100 caracteres</p>}
-                        {errors.mail?.type === 'pattern' && <p class="error-form">El formato del email es incorrecto</p>}
+                        {errors.mail?.type === 'maxLength' && <p class="error-form">El campo correo no puede tener mas de 100 caracteres</p>}
+                        {errors.mail?.type === 'pattern' && <p class="error-form">El formato del correo es incorrecto</p>}
                     </div>
                 )}
                 <div>
